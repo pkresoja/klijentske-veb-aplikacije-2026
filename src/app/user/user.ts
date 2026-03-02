@@ -35,4 +35,8 @@ export class User {
     axios.get('https://flight.pequla.com/api/flight/destination')
     .then(rsp=>this.destinations.set(rsp.data))
   }
+
+  updateUser() {
+    AuthService.updateActiveUser(this.activeUser!)
+  }
 }
