@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -10,6 +10,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { FlightService } from '../services/flight.service';
 import { Loading } from '../loading/loading';
 import { Alerts } from '../alerts';
+import { FlightModel } from '../../models/flight.model';
+import { MatListModule } from '@angular/material/list';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'app-user',
@@ -19,20 +22,23 @@ import { Alerts } from '../alerts';
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    MatListModule,
     MatSelectModule,
-    Loading
-  ],
+    Loading,
+    RouterLink
+],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
 export class User {
   public activeUser = AuthService.getActiveUser()
   destinations = signal<string[]>([])
+  recommended = signal<FlightModel[]>([])
   oldPassword = ''
   newPassword = ''
   passRepeat = ''
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public utils: Utils) {
     if (!AuthService.getActiveUser()) {
       router.navigate(['/login'])
       return
@@ -40,6 +46,9 @@ export class User {
 
     FlightService.getDestinations()
       .then(rsp => this.destinations.set(rsp.data))
+
+    FlightService.getFlightsToDestination(this.activeUser!.destination)
+      .then(rsp => this.recommended.set(rsp.data.content))
   }
 
   getAvatarUrl() {
