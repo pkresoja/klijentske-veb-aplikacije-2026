@@ -71,7 +71,7 @@ export class Order {
 
   placeOrder() {
     Alerts.confirm(`Are you sure you want to place the order for ${this.calculateTotal()} EUR?`, () => {
-      AuthService.createOrder(this.order, this.flight()!.id)
+      AuthService.createOrder(this.order, this.flight()!)
       this.router.navigate(['/cart'])
     })
   }
