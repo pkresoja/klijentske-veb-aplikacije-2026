@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { FlightService } from '../services/flight.service';
+import { FlightService } from '../../services/flight.service';
 import { Loading } from '../loading/loading';
 import { Alerts } from '../alerts';
 import { FlightModel } from '../../models/flight.model';
