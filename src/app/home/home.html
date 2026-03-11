@@ -1,6 +1,37 @@
 @if(flights().length > 0) {
+<div class="search-wrapper">
+    <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="search" (keyup)="filter()">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Destination</mat-label>
+        <mat-select [(ngModel)]="destination" (ngModelChange)="filter()">
+            <mat-option value="">All Destinations</mat-option>
+            @for (dest of getDestinations(); track dest) {
+            <mat-option [value]="dest">{{dest}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>From Date</mat-label>
+        <mat-select [(ngModel)]="fromDate" (ngModelChange)="filter()">
+            @for (date of getAvilableDates(); track date) {
+            <mat-option [value]="date">{{date}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>To Date</mat-label>
+        <mat-select [(ngModel)]="toDate" (ngModelChange)="filter()">
+            @for (date of getAvilableDates(); track date) {
+            <mat-option [value]="date">{{date}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</div>
 <div class="card-wrapper">
-    @for (f of flights(); track $index){
+    @for (f of filteredFlights(); track $index){
     <mat-card class="flight-card" appearance="outlined">
         <img mat-card-image [src]="utils.getImageUrl(f)" [alt]="f.destination">
         <mat-card-content class="card-content">
@@ -24,5 +55,5 @@
 </div>
 }
 @else {
-    <app-loading />
+<app-loading />
 }
