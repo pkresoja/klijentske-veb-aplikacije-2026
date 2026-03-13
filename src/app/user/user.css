@@ -2,21 +2,11 @@
     width: 340px;
 }
 
-.user-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
 .user-details {
     height: 170px;
 }
 
 .user-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
     justify-content: start;
 }
 

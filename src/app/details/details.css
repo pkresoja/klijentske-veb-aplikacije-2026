@@ -1,12 +1,4 @@
-.details-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.details-card{
+.details-card {
     width: 560px;
 }
 
@@ -16,6 +8,4 @@
 
 .map-card {
     max-width: 1130px;
-    margin-left: auto;
-    margin-right: auto;
 }

@@ -1,5 +1,5 @@
 @if(flight() != null) {
-<div class="flex-wrapper">
+<div class="d-flex gap-10">
     <mat-card class="flex-card" appearance="outlined">
         <img mat-card-image [src]="utils.getImageUrl(flight()!)" [alt]="flight()?.destination">
         <mat-card-content>

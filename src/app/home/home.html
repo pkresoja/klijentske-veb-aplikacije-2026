@@ -1,5 +1,5 @@
 @if(flights().length > 0) {
-<div class="search-wrapper">
+<div class="d-flex gap-10">
     <mat-form-field>
         <mat-label>Search</mat-label>
         <input matInput type="text" [(ngModel)]="search" (keyup)="filter()">
@@ -30,7 +30,7 @@
         </mat-select>
     </mat-form-field>
 </div>
-<div class="card-wrapper">
+<div class="d-flex gap-5">
     @for (f of filteredFlights(); track $index){
     <mat-card class="flight-card" appearance="outlined">
         <img mat-card-image [src]="utils.getImageUrl(f)" [alt]="f.destination">

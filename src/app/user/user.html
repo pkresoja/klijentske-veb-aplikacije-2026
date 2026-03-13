@@ -1,6 +1,6 @@
 @if(destinations().length > 0) {
-<div class="user-wrapper">
-    <mat-card class="user-card">
+<div class="d-flex gap-10">
+    <mat-card class="flex-card">
         <mat-card-header>
             <h1>User Details</h1>
         </mat-card-header>
@@ -36,19 +36,19 @@
             </button>
         </mat-card-actions>
     </mat-card>
-    <div class="user-wrapper user-card">
-        <mat-card class="user-card user-details">
+    <div class="d-flex gap-10 flex-card">
+        <mat-card class="flex-card user-details">
             <mat-card-header>
                 <h1>General Information</h1>
             </mat-card-header>
             <mat-card-content>
-                <div class="user-info">
+                <div class="d-flex gap-10 user-info">
                     <img [src]="getAvatarUrl()" class="user-img">
                     <h3>{{activeUser!.email}}</h3>
                 </div>
             </mat-card-content>
         </mat-card>
-        <mat-card class="user-card">
+        <mat-card class="flex-card">
             <mat-card-header>
                 <h1>Change Password</h1>
             </mat-card-header>
@@ -75,7 +75,7 @@
             </mat-card-actions>
         </mat-card>
     </div>
-    <mat-card class="user-card">
+    <mat-card class="flex-card">
         <mat-card-header>
             <h1>Recommended Flights</h1>
         </mat-card-header>
@@ -86,7 +86,10 @@
                     <mat-icon matListItemIcon>flight</mat-icon>
                     <div matListItemTitle>{{f.flightNumber}}</div>
                     <div matListItemLine>{{utils.formatDate(f.scheduledAt)}}</div>
-                    <a [routerLink]="`/details/${f.id}`" matButton>Open Details</a>
+                    <a [routerLink]="`/details/${f.id}`" matButton>
+                        <mat-icon fontIcon="description" />
+                        Open Details
+                    </a>
                 </mat-list-item>
                 }
             </mat-list>
