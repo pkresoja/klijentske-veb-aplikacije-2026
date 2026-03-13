@@ -23,3 +23,13 @@
 mat-form-field {
     width: 300px;
 }
+
+@media screen and (max-width: 640px) {
+    .search-wrapper {
+        gap: 0px;
+    }
+
+    .flight-card {
+        width: 300px;
+    }
+}

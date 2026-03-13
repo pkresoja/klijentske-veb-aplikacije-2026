@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { DataService } from '../../services/data.service';
@@ -20,13 +20,42 @@ import Swal from 'sweetalert2';
 export class Cart {
   airlines = DataService.getAirlines()
   types = DataService.getSeatingTypes()
-  displayedColumns =
-    ['destination', 'flightNumber', 'scheduledAt', 'airline', 'seatingType', 'ageGroup', 'count', 'options']
+  clientWidth: number = document.documentElement.clientWidth
+  displayedColumns: string[] = []
 
   constructor(public router: Router, public utils: Utils) {
     if (!AuthService.getActiveUser()) {
       router.navigate(['/login'])
       return
+    }
+    
+    this.resizeTable()
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.clientWidth = (event.target as Window).document.documentElement.clientWidth;
+    this.resizeTable()
+  }
+
+  resizeTable() {
+    if (this.clientWidth >= 1010) {
+      this.displayedColumns = ['destination', 'flightNumber', 'scheduledAt', 'airline', 'seatingType', 'ageGroup', 'count', 'options']
+      return
+    }
+
+    if (this.clientWidth >= 840) {
+      this.displayedColumns = ['destination', 'flightNumber', 'scheduledAt', 'airline', 'seatingType', 'options']
+      return
+    }
+
+    if (this.clientWidth >= 580) {
+      this.displayedColumns = ['destination', 'flightNumber', 'airline', 'options']
+      return
+    }
+
+    if (this.clientWidth < 580) {
+      this.displayedColumns = ['destination', 'options']
     }
   }
 
